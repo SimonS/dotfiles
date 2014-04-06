@@ -47,4 +47,9 @@ augroup filetype_vim
 augroup END
 " }}}
 
+augroup filetype_text
+    autocmd!
+    autocmd FileType text,markdown setlocal wrap
+augroup END
+
 NeoBundleCheck
