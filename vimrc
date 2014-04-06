@@ -40,16 +40,22 @@ nnoremap <leader>sv :source $MYVIMRC<cr>
 imap <expr> <tab> emmet#expandAbbrIntelligent("\<tab>")
 " }}}
 
-" Vimscript file settings ---------------------{{{
-augroup filetype_vim
-    autocmd!
-    autocmd FileType vim setlocal foldmethod=marker foldlevelstart=0
-augroup END
-" }}}
+" File-specific settings ----------------------{{{
 
-augroup filetype_text
-    autocmd!
-    autocmd FileType text,markdown setlocal wrap
-augroup END
+    " Vimscript file settings ---------------------{{{
+    augroup filetype_vim
+        autocmd!
+        autocmd FileType vim setlocal foldmethod=marker foldlevelstart=0
+    augroup END
+    " }}}
+
+    " Text file settings ------------------------{{{
+    augroup filetype_text
+        autocmd!
+        autocmd FileType text,markdown setlocal wrap
+    augroup END
+    " }}}
+
+" }}}
 
 NeoBundleCheck
