@@ -38,6 +38,10 @@ nnoremap <leader>op :execute "rightbelow vsplit " . bufname("#")<cr>
 nnoremap <leader>ev :vsplit $MYVIMRC<cr>
 nnoremap <leader>sv :source $MYVIMRC<cr>
 
+" Show / hide lines with trailing whitespace
+nnoremap <leader>w :match Error /\v.*\s+$/<cr>
+nnoremap <leader>W :match none /\v.*\s+$/<cr>
+
 imap <expr> <tab> emmet#expandAbbrIntelligent("\<tab>")
 " }}}
 
