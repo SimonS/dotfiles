@@ -22,7 +22,7 @@ filetype plugin indent on
 
 set number numberwidth=4 nowrap shiftround ruler visualbell wildmenu
 set noerrorbells tabstop=4 expandtab autoindent laststatus=2 shortmess=at
-set shiftwidth=4 softtabstop=4 smarttab
+set shiftwidth=4 softtabstop=4 smarttab hlsearch incsearch
 " }}}
 
 " Mappings ---{{{
@@ -41,6 +41,9 @@ nnoremap <leader>sv :source $MYVIMRC<cr>
 " Show / hide lines with trailing whitespace
 nnoremap <leader>w :match Error /\v.*\s+$/<cr>
 nnoremap <leader>W :match none /\v.*\s+$/<cr>
+
+" toggle highlight search
+nnoremap <leader>hl :set hlsearch!<cr>
 
 imap <expr> <tab> emmet#expandAbbrIntelligent("\<tab>")
 " }}}
