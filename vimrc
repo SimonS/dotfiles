@@ -13,8 +13,8 @@ NeoBundle 'mattn/emmet-vim'
 " Basic settings -{{{
 let mapleader=","
 
-colorscheme solarized
 set background=dark
+colorscheme solarized
 
 syntax on
 
@@ -34,6 +34,7 @@ nnoremap <leader>u viwUw
 
 nnoremap <leader>d dd
 
+nnoremap <leader>op :execute "rightbelow vsplit " . bufname("#")<cr>
 nnoremap <leader>ev :vsplit $MYVIMRC<cr>
 nnoremap <leader>sv :source $MYVIMRC<cr>
 
