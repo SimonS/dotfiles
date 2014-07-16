@@ -8,6 +8,7 @@ NeoBundleFetch 'Shougo/neobundle.vim'
 
 NeoBundle 'altercation/vim-colors-solarized'
 NeoBundle 'mattn/emmet-vim'
+NeoBundle 'klen/python-mode'
 " }}}
 
 " Basic settings -{{{
