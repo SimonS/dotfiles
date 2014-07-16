@@ -66,4 +66,10 @@ imap <expr> <tab> emmet#expandAbbrIntelligent("\<tab>")
 
 " }}}
 
+" Grep plugin experiment -{{{
+"nnoremap <leader>g :silent execute "grep! -R " . shellescape(expand("<cWORD>")) . " ."<cr>:copen 16<cr>
+nnoremap <leader>n :cnext<cr>
+nnoremap <leader>p :cprev<cr>
+" }}}
+
 NeoBundleCheck
