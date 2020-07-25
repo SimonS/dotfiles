@@ -1,10 +1,12 @@
 function manipulateFrame(cb)
-    local win = hs.window.focusedWindow()
-    local f = win:frame()
+    return function()
+        win = hs.window.focusedWindow()
+        f = win:frame()
 
-    cb(f)
+        cb(f)
 
-    win:setFrame(f)
+        win:setFrame(f)
+    end
 end
 
 hs.hotkey.bind({"cmd", "alt", "ctrl"}, "H", manipulateFrame(function(f)
