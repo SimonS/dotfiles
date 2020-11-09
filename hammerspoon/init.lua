@@ -77,8 +77,8 @@ openTabsBar = hs.menubar.new(true)
 function updateOpenTabs()
     result = hs.execute(os.getenv("HOME") .. "/bin/get-open-tabs.sh", true)
     strippedResult = result:match( "(.-)%s*$" )
+    if (strippedResult == "") then strippedResult = 0 end
     TARGET = 100
-
     styled = hs.styledtext.new({
         "  " .. strippedResult .. "  ",
         tonumber(strippedResult) > TARGET and {
