@@ -114,4 +114,27 @@ if openTabsBar then
     profileWatcher = hs.pathwatcher.new(os.getenv("HOME") .. profileFolder, updateOpenTabs):start()
 end
 
+function outlookToRoamMarkdown()
+    status, object, descriptor = hs.osascript.javascript([[
+        Application('Microsoft Outlook')
+        .selectedObjects()
+        .map(ev => ({	
+            title: ev.subject(),
+            time: `${ev.startTime().getHours().toString().padStart(2, '0')}:${ev.startTime().getMinutes().toString().padStart(2, '0')}`,
+            attendees: [...ev.attendees().map(att => `[[${att.emailAddress().name}]\]`)],
+            agenda: ev.plainTextContent().trim().split(/[\r\n]+/).join(' ----- '),
+            location: ev.location()
+        })).sort((a, b) => a.time - b.time).map(ev => `[[Meeting/${ev.title}]\] - ${ev.time}
+        - Category:: #meeting
+        - Attendees
+        - ${ev.attendees.join('\n    ')}
+        - Agenda\n
+        - ${ev.agenda}`).join("\n");
+        ]])
+        hs.pasteboard.setContents(object)
+        hs.alert.show("Agenda items copied to clipboard")
+end
+
+hs.hotkey.bind({"cmd", "alt", "ctrl"}, "O", outlookToRoamMarkdown)
+    
 hs.alert.show("Config loaded")
