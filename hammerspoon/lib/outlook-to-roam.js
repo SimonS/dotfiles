@@ -10,7 +10,7 @@ Application("Microsoft Outlook")
     title: ev.subject(),
     time: `${timeToString(ev.startTime())}`,
     attendees: [
-      ...ev.attendees().map((att) => `[[${att.emailAddress().name}]]`),
+      ...ev.attendees().map((att) => `     - [[${att.emailAddress().name}]]`),
     ],
     agenda: ev
       .plainTextContent()
@@ -22,10 +22,10 @@ Application("Microsoft Outlook")
   .sort((a, b) => a.time - b.time)
   .map(
     (ev) => `[[Meeting/${ev.title}]] - ${ev.time}
-        - Category:: #meeting
-        - Attendees
-        - ${ev.attendees.join("\n    ")}
-        - Agenda\n
-        - ${ev.agenda}`
+  - Category:: #meeting
+  - Attendees
+${ev.attendees.join("\n")}
+  - Agenda\n
+    - ${ev.agenda}`
   )
   .join("\n");
