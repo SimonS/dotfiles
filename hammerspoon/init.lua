@@ -69,51 +69,6 @@ hs.hotkey.bind({"cmd", "alt", "ctrl"}, "R", hs.reload)
 
 hs.hotkey.bind({"cmd", "alt"}, "V", function() hs.eventtap.keyStrokes(hs.pasteboard.getContents()) end)
 
--- First thing I've really done off my own back. Reads from Firefox Session restore
--- file, parses the total number of tabs, and lobs them in a menubar. Colours the menubar
--- red when we're over 100. 
--- That "when we're" clause is redundant.
-openTabsBar = hs.menubar.new(true)
-function updateOpenTabs()
-    result = hs.execute(os.getenv("HOME") .. "/bin/get-open-tabs.sh", true)
-    strippedResult = result:match( "(.-)%s*$" )
-    if (strippedResult == "") then strippedResult = 0 end
-    TARGET = 100
-    styled = hs.styledtext.new({
-        "  " .. strippedResult .. "  ",
-        tonumber(strippedResult) > TARGET and {
-            starts = 2,
-            attributes = {
-                backgroundColor = { red = 1},
-                color = { white = 1}
-            }
-        }
-    })
-    openTabsBar:setTitle(styled)
-end
-
-if openTabsBar then
-    icon = [[ASCII:
-    ............
-    ............
-    ............
-    ..C......D..
-    ............
-    ............
-    ............
-    A.B......E.F
-    H..........I
-    K..........L
-    ............
-    ............]]
-    openTabsBar:setIcon(icon)
-
-    updateOpenTabs()
-
-    profileFolder = "/Library/Application Support/Firefox/Profiles/lupwyej0.default-release/sessionstore-backups"
-    profileWatcher = hs.pathwatcher.new(os.getenv("HOME") .. profileFolder, updateOpenTabs):start()
-end
-
 function outlookToRoamMarkdown()
     status, object, descriptor = hs.osascript.javascriptFromFile('./lib/outlook-to-roam.js')
     hs.pasteboard.setContents(object)
