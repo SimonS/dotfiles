@@ -21,10 +21,10 @@ function updateOpenTabs()
 
     if count ~= previousCount then
         if count > previousCount and previousCount ~= -1 then
-            countDir = "^"
+            countDir = "▲"
         end
         if count < previousCount then
-            countDir = "V"
+            countDir = "▼"
         end
 
         previousCount = count
