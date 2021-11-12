@@ -61,5 +61,6 @@ if openTabsBar then
     ............]]
     openTabsBar:setIcon(icon)
 
-    hs.timer.doEvery(3, updateOpenTabs)
+    -- if you don't assign to a global the timer will be garbage collected
+    tabTimer = hs.timer.doEvery(3, updateOpenTabs)
 end
